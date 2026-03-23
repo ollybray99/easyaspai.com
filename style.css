@@ -1,17 +1,20 @@
 /* ============================================
    easyaspai.com — Stylesheet
-   Edit the :root variables to restyle the site
+   RPC Legal Brand Colors + Modern AI Aesthetic
    ============================================ */
 
 :root {
-    --colour-primary:   #6c3fc5;   /* purple — main brand colour */
-    --colour-accent:    #f5a623;   /* amber  — highlight / CTA   */
-    --colour-bg:        #f7f5ff;   /* light lavender background  */
+    /* RPC Legal Brand Colors */
+    --colour-primary:   #4D306A;   /* Bossanova Purple — RPC primary */
+    --colour-accent:    #D00571;   /* Razzmatazz — RPC accent pink/magenta */
+    --colour-secondary: #E8AA71;   /* Porsche — RPC secondary orange/peach */
+    --colour-bg:        #F8F6FA;   /* Soft lavender background */
     --colour-text:      #2d2d2d;
     --colour-light:     #ffffff;
+    --colour-grey:      #6B7280;
     --font-heading:     'Georgia', serif;
-    --font-body:        'Arial', sans-serif;
-    --max-width:        940px;
+    --font-body:        -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+    --max-width:        1100px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,12 +23,12 @@ body {
     font-family: var(--font-body);
     color: var(--colour-text);
     background: var(--colour-bg);
-    line-height: 1.75;
+    line-height: 1.7;
     font-size: 17px;
 }
 
 img { max-width: 100%; display: block; }
-a { color: var(--colour-primary); }
+a { color: var(--colour-primary); transition: color 0.2s; }
 a:hover { color: var(--colour-accent); }
 
 /* --- Header --- */
@@ -33,6 +36,7 @@ header {
     background: var(--colour-primary);
     color: var(--colour-light);
     padding: 0 1.5rem;
+    box-shadow: 0 2px 10px rgba(77, 48, 106, 0.1);
 }
 
 .header-inner {
@@ -48,176 +52,378 @@ header {
 
 .site-title {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: bold;
     color: var(--colour-light);
     text-decoration: none;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
 }
 
-.site-title span { color: var(--colour-accent); }
+.site-title span { color: var(--colour-secondary); }
 
-nav ul { list-style: none; display: flex; gap: 1.5rem; }
+nav ul { list-style: none; display: flex; gap: 1.8rem; flex-wrap: wrap; }
 
 nav a {
     color: var(--colour-light);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
+    position: relative;
+    padding: 0.2rem 0;
 }
-nav a:hover { color: var(--colour-accent); }
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--colour-secondary);
+    transition: width 0.3s;
+}
+
+nav a:hover::after { width: 100%; }
+nav a:hover { color: var(--colour-light); }
 
 /* --- Hero --- */
 .hero {
-    background: linear-gradient(135deg, var(--colour-primary) 0%, #3a1a8a 100%);
+    background: linear-gradient(135deg, var(--colour-primary) 0%, #2a1a47 100%);
     color: var(--colour-light);
     text-align: center;
     padding: 6rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(232, 170, 113, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
 }
 
 .hero-badge {
     display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
     border-radius: 999px;
-    padding: 0.3rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    line-height: 1.15;
-    margin-bottom: 1.2rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    max-width: 620px;
-    margin: 0 auto 2.2rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    opacity: 0.95;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
 }
 
 .btn {
     display: inline-block;
     background: var(--colour-accent);
     color: var(--colour-light);
-    padding: 0.9rem 2.2rem;
-    border-radius: 6px;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.05rem;
-    transition: opacity 0.2s;
-    margin: 0.3rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin: 0.4rem;
+    border: 2px solid transparent;
 }
-.btn:hover { opacity: 0.85; color: var(--colour-light); }
+
+.btn:hover {
+    background: #B8004D;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(208, 5, 113, 0.3);
+    color: var(--colour-light);
+}
 
 .btn--outline {
     background: transparent;
-    border: 2px solid rgba(255,255,255,0.6);
+    border: 2px solid rgba(255,255,255,0.7);
+    color: var(--colour-light);
+}
+
+.btn--outline:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--colour-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
 /* --- Sections --- */
-.section { padding: 4.5rem 1.5rem; }
+.section { padding: 5rem 1.5rem; }
 .section-inner { max-width: var(--max-width); margin: 0 auto; }
 .section--alt { background: var(--colour-light); }
+.section--cta {
+    background: linear-gradient(135deg, #F8F6FA 0%, #EDE7F6 100%);
+    text-align: center;
+}
 
 .section-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--colour-primary);
-    margin-bottom: 0.5rem;
+    color: var(--colour-accent);
+    margin-bottom: 0.8rem;
 }
 
 .section h2 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--colour-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
 }
 
-.section p { margin-bottom: 1rem; max-width: 720px; }
+.section p { margin-bottom: 1.2rem; max-width: 780px; font-size: 1.05rem; }
 
 /* --- Feature / benefit cards --- */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
 }
 
 .card {
-    background: var(--colour-bg);
-    border: 1px solid #e0d8f5;
-    border-radius: 10px;
-    padding: 1.8rem;
+    background: var(--colour-light);
+    border: 1px solid #E5E0F0;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(77, 48, 106, 0.15);
+    border-color: var(--colour-secondary);
 }
 
 .card-icon {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .card h3 {
     font-family: var(--font-heading);
     color: var(--colour-primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.3rem;
+}
+
+.card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--colour-grey);
 }
 
 /* --- How it works steps --- */
-.steps { margin-top: 2rem; counter-reset: step; }
+.steps { margin-top: 3rem; }
 
 .step {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: flex-start;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .step-number {
-    counter-increment: step;
-    width: 2.4rem;
-    height: 2.4rem;
-    min-width: 2.4rem;
-    background: var(--colour-primary);
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    background: linear-gradient(135deg, var(--colour-primary) 0%, var(--colour-accent) 100%);
     color: var(--colour-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 1rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(77, 48, 106, 0.2);
 }
 
 .step-content h3 {
     font-family: var(--font-heading);
     color: var(--colour-primary);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
 }
 
-/* --- Contact --- */
-.contact-info { margin-top: 1.5rem; }
-.contact-info p { margin-bottom: 0.5rem; }
-.contact-info a { font-weight: 600; }
+.step-content p {
+    color: var(--colour-grey);
+    line-height: 1.7;
+}
+
+/* --- Benefits grid --- */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.benefit-card {
+    background: var(--colour-bg);
+    border: 1px solid #E5E0F0;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s;
+}
+
+.benefit-card:hover {
+    background: var(--colour-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(77, 48, 106, 0.12);
+}
+
+.benefit-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+    font-family: var(--font-heading);
+    color: var(--colour-primary);
+    margin-bottom: 0.7rem;
+    font-size: 1.2rem;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--colour-grey);
+}
+
+/* --- Stats --- */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+    padding: 3rem 0 1rem;
+    border-top: 2px solid #E5E0F0;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--colour-accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--colour-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- RPC Content --- */
+.rpc-content p {
+    max-width: 100%;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+}
+
+.rpc-highlight {
+    background: linear-gradient(135deg, var(--colour-primary) 0%, #3a1f5a 100%);
+    color: var(--colour-light);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.rpc-highlight h3 {
+    font-family: var(--font-heading);
+    color: var(--colour-secondary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.rpc-highlight p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.95;
+    margin-bottom: 0;
+}
+
+/* --- Contact / CTA --- */
+.contact-info {
+    margin: 2rem 0;
+    font-size: 1.1rem;
+}
+
+.contact-info p { margin-bottom: 0.8rem; }
+.contact-info a { font-weight: 700; text-decoration: underline; }
+
+.cta-buttons {
+    margin-top: 2.5rem;
+}
 
 /* --- Footer --- */
 footer {
-    background: #2a1060;
-    color: #b8a8e0;
+    background: var(--colour-primary);
+    color: #C5B5D8;
     text-align: center;
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     font-size: 0.9rem;
 }
-footer a { color: #b8a8e0; }
 
-@media (max-width: 600px) {
-    nav ul { gap: 1rem; }
-    .hero { padding: 3.5rem 1rem; }
+footer p { margin-bottom: 0.5rem; }
+footer .footer-note { font-size: 0.85rem; opacity: 0.8; }
+footer a { color: var(--colour-secondary); }
+
+@media (max-width: 768px) {
+    nav ul { gap: 1rem; font-size: 0.9rem; }
+    .hero { padding: 4rem 1rem; }
+    .section { padding: 3.5rem 1rem; }
+    .section h2 { font-size: 2rem; }
+    .step { flex-direction: column; gap: 1rem; }
+    .stats { gap: 1.5rem; }
+    .stat-number { font-size: 2.8rem; }
+    .rpc-highlight { padding: 1.8rem; }
+}
+
+@media (max-width: 500px) {
+    nav ul {
+        width: 100%;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+    .card-grid, .benefits-grid {
+        grid-template-columns: 1fr;
+    }
 }
