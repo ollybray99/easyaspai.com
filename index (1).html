@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pai — AI-powered legal services. Delivered as a managed solution.</title>
+<meta name="description" content="Pai helps legal teams deploy AI safely, intelligently, and at scale. Combining advanced AI with experienced lawyers and technologists.">
+<link rel="stylesheet" href="pai-styles.css">
+<style>
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:130px clamp(20px,5vw,80px) 80px;position:relative;z-index:1;overflow:hidden}
+.hero-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at center,rgba(59,130,246,0.1) 0%,rgba(6,182,212,0.07) 40%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-dim);border:1px solid var(--border-blue);border-radius:100px;padding:6px 16px 6px 10px;font-size:13px;font-weight:500;color:var(--blue-bright);margin-bottom:32px;animation:fadeDown 0.7s ease both}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);flex-shrink:0;animation:pulse 2.4s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-size:clamp(46px,7.5vw,90px);font-weight:700;line-height:1.0;color:var(--text);max-width:920px;margin-bottom:28px;animation:fadeUp 0.8s ease 0.1s both}
+.hero h1 .grad{display:block;background:linear-gradient(95deg,var(--blue-bright),var(--cyan-bright),var(--purple) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(17px,2vw,20px);font-weight:300;color:var(--text2);max-width:600px;line-height:1.7;margin-bottom:48px;animation:fadeUp 0.8s ease 0.2s both}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.8s ease 0.3s both}
+canvas.net{position:absolute;inset:0;pointer-events:none;z-index:-1}
+.scroll-cue{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;animation:fadeUp 1s ease 0.8s both}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--text3),transparent);animation:bob 2s ease infinite}
+@keyframes bob{0%,100%{opacity:0.4}50%{opacity:1}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.trust-bar{position:relative;z-index:1;padding:20px clamp(20px,4vw,72px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015)}
+.trust-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text3)}
+.trust-icon{width:24px;height:24px;border-radius:50%;background:var(--cyan-dim);border:1px solid var(--border-cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.why-card{padding:36px 28px;border-radius:var(--r-lg);border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden;transition:border-color 0.25s,transform 0.25s,background 0.25s}
+.why-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.3s}
+.why-card.bl::after{background:var(--blue)}.why-card.cy::after{background:var(--cyan)}.why-card.pu::after{background:var(--purple)}
+.why-card:hover{border-color:var(--border2);background:var(--surface2);transform:translateY(-5px)}
+.why-card:hover::after{opacity:1}
+.why-stat{font-size:44px;font-weight:700;line-height:1;margin-bottom:12px;font-family:var(--font)}
+.why-card.bl .why-stat{color:var(--blue-bright)}.why-card.cy .why-stat{color:var(--cyan-bright)}.why-card.pu .why-stat{color:#A78BFA}
+.why-card h3{font-size:17px;font-weight:600;margin-bottom:10px}
+.why-card p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.65}
+
+.model-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.model-stack{display:flex;flex-direction:column;align-items:stretch;gap:0;max-width:440px}
+.model-box{padding:22px 28px;border:1px solid var(--border);border-radius:var(--r-md);background:var(--surface);transition:border-color 0.2s}
+.model-box:hover{border-color:var(--border-blue)}
+.model-box.hl{background:var(--blue-dim);border-color:var(--border-blue)}
+.model-box h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.model-box p{font-size:13px;color:var(--text2);font-weight:300}
+.model-arr{display:flex;justify-content:center;padding:8px 0}
+.model-arr svg{opacity:0.5}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{display:block;padding:28px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);text-decoration:none;position:relative;overflow:hidden;transition:border-color 0.2s,background 0.2s,transform 0.2s}
+.svc-card:hover{border-color:var(--border-cyan);background:var(--surface2);transform:translateY(-4px)}
+.svc-card .arr{position:absolute;bottom:20px;right:22px;font-size:17px;color:var(--text3);transition:color 0.2s,transform 0.2s}
+.svc-card:hover .arr{color:var(--cyan-bright);transform:translateX(4px)}
+.svc-card .ico{font-size:28px;margin-bottom:14px;display:block}
+.svc-card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.svc-card p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.6;padding-right:20px}
+
+.cta-block{border-radius:var(--r-xl);border:1px solid var(--border-blue);background:linear-gradient(135deg,rgba(59,130,246,0.08),rgba(6,182,212,0.06),rgba(139,92,246,0.06));padding:80px clamp(36px,8vw,100px);text-align:center;position:relative;overflow:hidden}
+.cta-block::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:250px;background:radial-gradient(ellipse,rgba(59,130,246,0.18) 0%,transparent 70%);pointer-events:none}
+.cta-block h2{font-size:clamp(28px,4vw,48px);font-weight:700;margin-bottom:18px}
+.cta-block p{font-size:17px;font-weight:300;color:var(--text2);max-width:480px;margin:0 auto 44px;line-height:1.7}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+@media(max-width:860px){.why-grid,.svc-grid,.model-wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:14px;text-decoration:none">
+    <span style="font-family:'Barlow',system-ui,sans-serif;font-weight:800;font-size:32px;color:#ffffff;letter-spacing:-1px;line-height:1">Pai</span>
+    <div style="display:flex;flex-direction:column;gap:3px">
+      <span style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;font-weight:400">Powered by</span>
+      <img src="data:image/png;base64,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" alt="RPC" style="height:24px;width:auto;display:block;border-radius:4px">
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About Pai</a></li>
+    <li><a href="why-pai.html">Why Pai</a></li>
+    <li><a href="solution.html">The Pai Solution</a></li>
+    <li><a href="services.html">Pai Services</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="contact.html" class="nav-cta">Book a session</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <canvas class="net" id="net"></canvas>
+
+  <h1>
+    AI-powered legal services.
+    <span class="grad">Delivered as a managed solution.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Pai helps legal teams deploy AI safely, intelligently, and at scale — combining advanced AI tools with experienced lawyers and technologists to transform document-heavy legal work.
+  </p>
+
+  <div class="hero-actions">
+    <a href="contact.html" class="btn btn-primary">
+      Book a discovery session
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="services.html" class="btn btn-outline">Explore our services</a>
+  </div>
+
+
+</section>
+
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Why teams choose Pai</span>
+      <h2 class="section-title">Faster. Smarter.<br><span class="accent">Governed.</span></h2>
+      <p class="section-body">AI is transforming legal work — but only if deployed safely and with the right expertise. Pai closes that gap.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card bl reveal reveal-delay-1">
+        <div class="why-stat">70%</div>
+        <h3>Faster legal workflows</h3>
+        <p>Reduce contract review time by up to 70%. Handle growing workloads without growing headcount.</p>
+      </div>
+      <div class="why-card cy reveal reveal-delay-2">
+        <div class="why-stat">100%</div>
+        <h3>Responsible AI deployment</h3>
+        <p>Enterprise-grade governance and data protection frameworks built into every engagement from day one.</p>
+      </div>
+      <div class="why-card pu reveal reveal-delay-3">
+        <div class="why-stat">∞</div>
+        <h3>Scalable legal capacity</h3>
+        <p>Handle growing volumes of document-heavy legal work without scaling headcount.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="border-top:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="model-wrap">
+      <div class="reveal">
+        <span class="label">How we operate</span>
+        <h2 class="section-title">Human expertise<br>+ <span class="accent-blue">AI technology</span></h2>
+        <p class="section-body" style="margin-bottom:28px">Pai isn't a software vendor. We operate as your dedicated AI managed services partner — handling platform selection, governance, workflow design, and ongoing optimisation.</p>
+        <a href="solution.html" class="btn btn-outline btn-sm">See the full solution →</a>
+      </div>
+      <div class="model-stack reveal reveal-delay-2">
+        <div class="model-box">
+          <h4>AI Platforms</h4>
+          <p>Best-in-class contract AI, LLMs, and document intelligence tools</p>
+        </div>
+        <div class="model-arr"><svg width="20" height="28" viewBox="0 0 20 28" fill="none"><line x1="10" y1="0" x2="10" y2="22" stroke="#3B82F6" stroke-width="1.5"/><path d="M5 17l5 7 5-7" stroke="#06B6D4" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div>
+        <div class="model-box hl">
+          <h4>Pai Legal Engineers &amp; Lawyers</h4>
+          <p>Prompt libraries · governance frameworks · quality assurance</p>
+        </div>
+        <div class="model-arr"><svg width="20" height="28" viewBox="0 0 20 28" fill="none"><line x1="10" y1="0" x2="10" y2="22" stroke="#3B82F6" stroke-width="1.5"/><path d="M5 17l5 7 5-7" stroke="#06B6D4" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div>
+        <div class="model-box">
+          <h4>Your Legal Workflows</h4>
+          <p>Faster, safer, AI-powered legal operations at scale</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="border-top:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Pai Services</span>
+      <h2 class="section-title">What we <span class="accent">deliver</span></h2>
+      <p class="section-body">Purpose-built AI workflows for the most document-intensive legal tasks — each backed by lawyer oversight and enterprise governance.</p>
+    </div>
+    <div class="svc-grid">
+      <a href="service-contract-review.html" class="svc-card reveal reveal-delay-1">
+        <span class="ico">📄</span>
+        <h3>Contract Review &amp; Redrafting</h3>
+        <p>AI identifies key clauses, risks, and compliance issues across large contract sets. Lawyer oversight ensures accuracy.</p>
+        <span class="arr">→</span>
+      </a>
+      <a href="service-litigation.html" class="svc-card reveal reveal-delay-2">
+        <span class="ico">⚖️</span>
+        <h3>Litigation Discovery</h3>
+        <p>AI-powered document discovery identifies relevant materials and key themes across large datasets.</p>
+        <span class="arr">→</span>
+      </a>
+      <a href="service-due-diligence.html" class="svc-card reveal reveal-delay-3">
+        <span class="ico">🔍</span>
+        <h3>Corporate Due Diligence</h3>
+        <p>Large contract portfolios analysed rapidly during M&amp;A or investment processes.</p>
+        <span class="arr">→</span>
+      </a>
+      <a href="service-compliance.html" class="svc-card reveal reveal-delay-1">
+        <span class="ico">🛡️</span>
+        <h3>Compliance &amp; DSAR</h3>
+        <p>AI-assisted workflows streamline identification, review, and redaction of personal data.</p>
+        <span class="arr">→</span>
+      </a>
+      <a href="service-custom.html" class="svc-card reveal reveal-delay-2">
+        <span class="ico">⚙️</span>
+        <h3>Custom AI Solutions</h3>
+        <p>Every legal department has unique workflows. Pai develops bespoke AI solutions around your operations.</p>
+        <span class="arr">→</span>
+      </a>
+      <a href="services.html" class="svc-card reveal reveal-delay-3" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:180px">
+        <span style="font-size:30px;margin-bottom:12px">+</span>
+        <h3 style="font-size:15px">View all services</h3>
+        <p style="font-size:12px;padding:0">See the full Pai service suite</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:120px">
+  <div class="section-inner">
+    <div class="cta-block reveal">
+      <h2>Ready to transform<br>your legal workflows?</h2>
+      <p>Join leading global organisations deploying AI-powered legal services at scale — safely, compliantly, and with measurable results.</p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-primary">Book a discovery workshop <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="contact.html" class="btn btn-outline">Contact the Pai team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:14px;text-decoration:none">
+    <span style="font-family:'Barlow',system-ui,sans-serif;font-weight:800;font-size:32px;color:#ffffff;letter-spacing:-1px;line-height:1">Pai</span>
+    <div style="display:flex;flex-direction:column;gap:3px">
+      <span style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;font-weight:400">Powered by</span>
+      <img src="data:image/png;base64,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" alt="RPC" style="height:28px;width:auto;display:block;border-radius:4px">
+    </div>
+  </a>
+      <p>AI-powered legal services. Delivered as a managed solution. RPC's dedicated AI managed services division.</p>
+    </div>
+    <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="about.html">About Pai</a></li><li><a href="why-pai.html">Why Pai</a></li><li><a href="solution.html">The Pai Solution</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="case-studies.html">Case Studies</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://www.rpclegal.com" target="_blank" rel="noopener">RPC Legal</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Data Processing</a></li><li><a href="#">Cookie Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Pai. A division of Reynolds Porter Chamberlain LLP. Regulated by the Solicitors Regulation Authority.</p>
+    <div class="footer-badges"><span class="footer-badge">ISO 27001</span><span class="footer-badge">SOC 2 Type II</span><span class="footer-badge">SRA Regulated</span></div>
+  </div>
+</footer>
+
+<script>
+// Network canvas
+(function(){
+  const c=document.getElementById('net');if(!c)return;
+  const x=c.getContext('2d');let W,H,ns=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  function init(){ns=[];for(let i=0;i<65;i++)ns.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1,o:Math.random()*.5+.15})}
+  function draw(){
+    x.clearRect(0,0,W,H);
+    ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1});
+    for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){
+      const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<160){const a=(1-d/160)*.1;x.beginPath();x.strokeStyle=`rgba(96,165,250,${a})`;x.lineWidth=.6;x.moveTo(ns[i].x,ns[i].y);x.lineTo(ns[j].x,ns[j].y);x.stroke()}
+    }
+    ns.forEach(n=>{x.beginPath();x.arc(n.x,n.y,n.r,0,Math.PI*2);x.fillStyle=`rgba(96,165,250,${n.o})`;x.fill()});
+    requestAnimationFrame(draw);
+  }
+  resize();init();draw();
+  window.addEventListener('resize',()=>{resize();init()});
+})();
+// Reveal
+const rv=document.querySelectorAll('.reveal');
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -60px 0px'}).observe?.[0]||
+(()=>{const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -60px 0px'});rv.forEach(el=>o.observe(el))})();
+</script>
+</body>
+</html>
