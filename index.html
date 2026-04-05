@@ -252,7 +252,7 @@ canvas.net{position:absolute;inset:0;pointer-events:none;z-index:-1}
       if(d<160){const a=(1-d/160)*.1;x.beginPath();x.strokeStyle=`rgba(96,165,250,${a})`;x.lineWidth=.6;x.moveTo(ns[i].x,ns[i].y);x.lineTo(ns[j].x,ns[j].y);x.stroke()}
     }
     ns.forEach(n=>{x.beginPath();x.arc(n.x,n.y,n.r,0,Math.PI*2);x.fillStyle=`rgba(96,165,250,${n.o})`;x.fill()});
-    requestAnimationFrame(draw);
+    requestAnimationFrame(draw); 
   }
   resize();init();draw();
   window.addEventListener('resize',()=>{resize();init()});
